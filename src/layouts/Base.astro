@@ -1,0 +1,107 @@
+---
+import '../styles/global.css';
+import { redes } from '../data/perfil';
+
+interface Props {
+  titulo?: string;
+  descripcion?: string;
+}
+
+const {
+  titulo = 'Frank Jaimes | Portafolio',
+  descripcion = 'Portafolio de Frank Jaimes: desarrollo de software con agentes de IA.',
+} = Astro.props;
+
+const enlaces = [
+  { href: '/#about', texto: 'About me' },
+  { href: '/#resume', texto: 'Resume' },
+  { href: '/#proyectos', texto: 'Proyectos' },
+  { href: '/#formacion', texto: 'Formación' },
+  { href: '/#contact', texto: 'Contact me' },
+];
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={descripcion} />
+    <meta name="theme-color" content="#102C40" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <title>{titulo}</title>
+    <script is:inline>
+      document.documentElement.classList.add('js');
+    </script>
+  </head>
+  <body class="min-h-screen antialiased">
+    <canvas data-fondo aria-hidden="true" class="pointer-events-none fixed inset-0 z-0 h-full w-full"></canvas>
+
+    <header class="fixed inset-x-0 top-0 z-30 bg-navy/80 backdrop-blur-md">
+      <div class="mx-auto flex max-w-6xl items-center justify-between gap-6 px-5 py-4">
+        <a href="/" class="shrink-0 text-lg font-bold tracking-tight">Frank Jaimes</a>
+        <nav aria-label="Secciones" class="-mr-2 hidden gap-1 text-sm font-medium md:flex">
+          {
+            enlaces.map((e) => (
+              <a
+                href={e.href}
+                class="rounded-full px-3 py-1.5 whitespace-nowrap transition-colors hover:bg-lime hover:text-navy"
+              >
+                {e.texto}
+              </a>
+            ))
+          }
+        </nav>
+        <button
+          type="button"
+          data-menu-boton
+          aria-expanded="false"
+          aria-controls="menu-movil"
+          class="boton-menu -mr-1 flex items-center gap-2.5 rounded-full px-3 py-1.5 text-sm font-semibold md:hidden"
+        >
+          <span data-menu-texto>Menú</span>
+          <span class="icono-menu" aria-hidden="true"><span></span><span></span></span>
+        </button>
+      </div>
+    </header>
+
+    <div id="menu-movil" data-menu class="menu-movil fixed inset-0 z-20 bg-navy md:hidden" hidden>
+      <span class="liquido liquido-lento absolute -right-24 -bottom-24 size-80 bg-navy-claro" aria-hidden="true"></span>
+      <nav aria-label="Secciones" class="relative flex h-full flex-col justify-center gap-2 px-6">
+        {
+          enlaces.map((e, i) => (
+            <a
+              href={e.href}
+              class="enlace-menu w-fit text-[clamp(2.6rem,12vw,4rem)] leading-tight font-extrabold tracking-[-0.03em] hover:text-lime focus-visible:text-lime"
+              style={`--orden: ${i}`}
+            >
+              {e.texto}
+            </a>
+          ))
+        }
+      </nav>
+      <ul class="enlace-menu absolute inset-x-6 bottom-10 flex gap-6 text-lg font-semibold" style="--orden: 5">
+        {
+          redes.map((r) => (
+            <li>
+              <a href={r.url} target="_blank" rel="noopener noreferrer" class="hover:text-lime">
+                {r.nombre}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <main class="relative z-10">
+      <slot />
+    </main>
+
+    <script>
+      import '../scripts/revelar';
+      import '../scripts/fondo';
+      import '../scripts/menu';
+    </script>
+  </body>
+</html>
