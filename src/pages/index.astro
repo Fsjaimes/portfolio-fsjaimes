@@ -1,0 +1,218 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Seccion from '../components/Seccion.astro';
+import GaleriaProyectos from '../components/GaleriaProyectos.astro';
+import Herramientas from '../components/Herramientas.astro';
+import perfil from '../assets/perfil.png';
+import { correo, redes } from '../data/perfil';
+
+const stackPrincipal = ['Laravel', 'Vue.js', 'Inertia', 'DDD', 'APIs'];
+
+const habilidades = [
+  {
+    nombre: 'Laravel, Vue.js e Inertia',
+    detalle: 'Aplicaciones web completas, del backend a la interfaz, con un mismo criterio de principio a fin.',
+  },
+  {
+    nombre: 'Arquitectura DDD',
+    detalle:
+      'Sistemas organizados por dominio, mantenibles y alineados con lo que el negocio necesita, no con lo que el framework impone.',
+  },
+  {
+    nombre: 'Bases de datos y APIs',
+    detalle: 'Modelado de bases de datos, diseño de APIs y consumo e integración de servicios externos.',
+  },
+  {
+    nombre: 'Interfaces limpias',
+    detalle: 'Pantallas intuitivas y cuidadas al detalle, pensadas desde la experiencia de quien las usa.',
+  },
+  {
+    nombre: 'Desarrollo con agentes de IA',
+    detalle:
+      'Trabajo con Claude Code y Codex, y construyo skills propias para automatizar documentación, videos tutoriales y diseño.',
+  },
+  {
+    nombre: 'Documentación que se entiende',
+    detalle: 'Manuales y guías técnicas que otra persona puede seguir sin preguntarme.',
+  },
+];
+
+const formacion = [
+  {
+    fechas: '2024',
+    lugar: 'SENA',
+    titulo: 'Curso corto: marco de trabajo Scrum para proyectos de desarrollo de software',
+  },
+  {
+    fechas: '2024',
+    lugar: 'SENA',
+    titulo: 'Curso corto: soporte técnico para el mantenimiento de equipos de cómputo',
+  },
+  {
+    fechas: '2021 – 2024',
+    lugar: 'Unidades Tecnológicas de Santander',
+    titulo: 'Tecnología en Desarrollo de Sistemas Informáticos',
+  },
+  {
+    fechas: '2018 – 2019',
+    lugar: 'SENA',
+    titulo: 'Técnico en Mercadeo',
+  },
+  {
+    fechas: '2014 – 2019',
+    lugar: 'Institución Educativa Maiporé',
+    titulo: 'Bachiller Técnico',
+  },
+];
+
+---
+
+<Base>
+  <section class="relative flex min-h-svh items-center justify-center overflow-hidden px-5 pt-24 pb-16">
+    <div class="pointer-events-none absolute top-1/2 left-1/2 size-[min(88vw,44rem)] -translate-1/2" aria-hidden="true">
+      <span class="liquido liquido-lento absolute inset-0 bg-navy-claro/70"></span>
+      <span class="liquido liquido-contorno absolute -inset-6 border-2 border-lime/40"></span>
+    </div>
+
+    <div class="relative flex flex-col items-center text-center" data-revelar>
+      <div class="sube-texto relative w-36 md:w-44">
+        <span class="liquido liquido-desfase absolute -inset-2.5 bg-lime" aria-hidden="true"></span>
+        <div class="liquido relative aspect-square overflow-hidden">
+          <Image
+            src={perfil}
+            alt="Ilustración de Frank Jaimes"
+            width={352}
+            height={352}
+            loading="eager"
+            class="h-full w-full scale-110 object-cover"
+          />
+        </div>
+      </div>
+
+      <h1
+        class="mt-10 text-[clamp(3.4rem,12vw,9.5rem)] leading-[0.88] font-extrabold tracking-[-0.05em] [font-stretch:80%]"
+      >
+        <span class="mascara"><span class="sube" style="--retraso: 80ms">Hola,</span></span>
+        <span class="mascara"><span class="sube" style="--retraso: 160ms">soy Frank.</span></span>
+      </h1>
+
+      <p class="sube-texto mt-6 text-xl font-semibold text-lime md:text-2xl" style="--retraso: 260ms">
+        Desarrollador Full Stack
+      </p>
+      <div class="sube-texto mt-5" style="--retraso: 340ms">
+        <ul class="flex max-w-md flex-wrap justify-center gap-2">
+          {
+            stackPrincipal.map((t) => (
+              <li class="rounded-full border border-cloud/30 px-3.5 py-1 text-sm font-medium text-cloud/85">{t}</li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <Seccion id="about" titulo="About me">
+    <div class="max-w-3xl space-y-6 text-xl leading-relaxed text-cloud/85 md:text-2xl" data-revelar>
+      <p class="sube-texto">
+        Soy desarrollador Full Stack y Tecnólogo en Desarrollo de Sistemas Informáticos, con 2 años de experiencia
+        construyendo aplicaciones web robustas, escalables y bien diseñadas.
+      </p>
+      <p class="sube-texto" style="--retraso: 100ms">
+        Trabajo con Laravel, Vue.js e Inertia, aplicando Domain-Driven Design (DDD) para crear sistemas organizados,
+        mantenibles y alineados con las necesidades del negocio. Tengo experiencia en el modelado de bases de datos,
+        la integración y el consumo de APIs, y el desarrollo de interfaces limpias, intuitivas y cuidadas al detalle.
+      </p>
+      <p class="sube-texto" style="--retraso: 200ms">
+        Mi fortaleza es la visión integral: entiendo tanto la arquitectura y la lógica del backend como la
+        experiencia del usuario en el frontend, lo que me permite diseñar soluciones completas y coherentes de
+        principio a fin. Me adapto rápido a nuevas tecnologías, trabajo bien en equipo y de forma autónoma, y
+        disfruto convertir problemas complejos en productos simples y funcionales.
+      </p>
+    </div>
+  </Seccion>
+
+  <Seccion id="resume" titulo="Resume" clara>
+    <ul class="grid gap-x-16 gap-y-12 md:grid-cols-2">
+      {
+        habilidades.map((h, i) => (
+          <li data-revelar>
+            <div class="sube-texto" style={`--retraso: ${(i % 2) * 110}ms`}>
+              <h3 class="text-3xl leading-tight font-bold tracking-tight">{h.nombre}</h3>
+              <p class="mt-3 max-w-md text-lg leading-relaxed text-navy/80">{h.detalle}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+    <Herramientas />
+  </Seccion>
+
+  <GaleriaProyectos />
+
+  <Seccion id="formacion" titulo="Formación">
+    <ol class="border-l-2 border-cloud/25">
+      {
+        formacion.map((f) => (
+          <li class="relative pb-12 pl-8 last:pb-0" data-revelar>
+            <span class="liquido liquido-rapido absolute top-1.5 -left-[11px] size-5 bg-lime" aria-hidden="true" />
+            <div class="sube-texto">
+              <p class="text-lg font-semibold text-lime">{f.fechas}</p>
+              <h3 class="mt-1 max-w-2xl text-2xl leading-snug font-bold">{f.titulo}</h3>
+              <p class="mt-1 text-lg text-cloud/75">{f.lugar}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </Seccion>
+
+  <Seccion id="contact" titulo="Contact me">
+    <div data-revelar>
+      <p class="sube-texto max-w-2xl text-xl leading-relaxed text-cloud/85 md:text-2xl">
+        ¿Tienes un proyecto o una pregunta? Escríbeme.
+      </p>
+      <a
+        href={`mailto:${correo}`}
+        class="sube-texto boton-liquido mt-8 block w-fit max-w-full bg-lime px-8 py-5 text-lg font-bold break-all text-navy"
+        style="--retraso: 120ms"
+      >
+        {correo}
+      </a>
+      <ul class="sube-texto mt-12 grid max-w-2xl gap-x-8 gap-y-6 sm:grid-cols-2" style="--retraso: 200ms">
+        {
+          redes.map((r) => (
+            <li>
+              <a
+                href={r.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="red group block border-t-2 border-cloud/25 pt-4 transition-colors hover:border-lime"
+              >
+                <span class="block text-3xl font-bold tracking-tight group-hover:text-lime">{r.nombre}</span>
+                <span class="mt-1 block text-cloud/70">{r.usuario}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </Seccion>
+
+  <footer class="px-5 pb-10 text-sm text-cloud/60">
+    <div class="mx-auto flex max-w-6xl flex-wrap justify-between gap-4">
+      <span>© {new Date().getFullYear()} Frank Jaimes</span>
+      <ul class="flex gap-5">
+        {
+          redes.map((r) => (
+            <li>
+              <a href={r.url} target="_blank" rel="noopener noreferrer" class="hover:text-lime">
+                {r.nombre}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </footer>
+</Base>

@@ -1,0 +1,23 @@
+---
+interface Props {
+  id: string;
+  titulo: string;
+  clara?: boolean;
+}
+
+const { id, titulo, clara = false } = Astro.props;
+---
+
+<section id={id} class:list={['scroll-mt-16 px-5 py-28 md:py-40', clara && 'bg-cloud text-navy']}>
+  <div class="mx-auto max-w-6xl">
+    <div data-revelar>
+      <h2 class:list={['titulo', clara && 'text-navy!']}>
+        <span class="mascara"><span class="sube">{titulo}</span></span>
+      </h2>
+      {clara && <span class="sube-texto mt-3 block h-3 w-28 bg-lime" />}
+    </div>
+    <div class="mt-12 md:mt-16">
+      <slot />
+    </div>
+  </div>
+</section>

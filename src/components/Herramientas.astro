@@ -1,0 +1,84 @@
+---
+import { siClaude, siCursor, siDocker, siGit, siGithub, siJira } from 'simple-icons';
+
+interface Herramienta {
+  nombre: string;
+  uso: string;
+  // Trazado SVG en un lienzo de 24×24. Codex no tiene logo libre: se usa un símbolo de terminal.
+  icono: string;
+}
+
+const agentes: Herramienta[] = [
+  {
+    nombre: 'Claude Code',
+    uso: 'Mi agente principal en la terminal. Con él construí mis skills de documentación y de videos tutoriales.',
+    icono: siClaude.path,
+  },
+  {
+    nombre: 'Codex',
+    uso: 'Agente de código de OpenAI para desarrollar y revisar cambios.',
+    icono: 'M3 5.5 9.5 12 3 18.5l1.4 1.4L12.3 12 4.4 4.1 3 5.5ZM12 18h9v2h-9v-2Z',
+  },
+  {
+    nombre: 'Cursor',
+    uso: 'Editor de código con IA integrada para el trabajo del día a día.',
+    icono: siCursor.path,
+  },
+];
+
+const equipo: Herramienta[] = [
+  { nombre: 'Jira', uso: 'Tareas y sprints con Scrum', icono: siJira.path },
+  { nombre: 'Git', uso: 'Control de versiones', icono: siGit.path },
+  { nombre: 'GitHub', uso: 'Repositorios y revisión de código', icono: siGithub.path },
+  { nombre: 'Docker', uso: 'Entornos y servicios en contenedores', icono: siDocker.path },
+];
+---
+
+<div class="mt-24 md:mt-32">
+  <h3 class="text-4xl leading-tight font-extrabold tracking-tight md:text-5xl" data-revelar>
+    <span class="mascara"><span class="sube">Herramientas con las que trabajo</span></span>
+  </h3>
+
+  <p class="mt-10 text-lg font-semibold">Agentes de código</p>
+  <ul class="mt-4 grid gap-4 md:grid-cols-3">
+    {
+      agentes.map((h, i) => (
+        <li data-revelar>
+          <div
+            class="sube-texto herramienta h-full rounded-[1.75rem] bg-navy p-7 text-cloud"
+            style={`--retraso: ${i * 90}ms`}
+          >
+            <span class="liquido icono-herramienta grid size-16 place-items-center bg-lime text-navy">
+              <svg viewBox="0 0 24 24" class="size-8" aria-hidden="true">
+                <path d={h.icono} fill="currentColor" />
+              </svg>
+            </span>
+            <p class="mt-8 text-3xl font-bold tracking-tight">{h.nombre}</p>
+            <p class="mt-2 text-base leading-relaxed text-cloud/75">{h.uso}</p>
+          </div>
+        </li>
+      ))
+    }
+  </ul>
+
+  <p class="mt-12 text-lg font-semibold">Equipo y código</p>
+  <ul class="mt-4 flex flex-wrap gap-3" data-revelar>
+    {
+      equipo.map((h, i) => (
+        <li class="sube-texto" style={`--retraso: ${i * 70}ms`}>
+          <div class="flex items-center gap-3 rounded-full border-2 border-navy/15 py-2 pr-5 pl-2">
+            <span class="grid size-10 place-items-center rounded-full bg-navy text-cloud">
+              <svg viewBox="0 0 24 24" class="size-5" aria-hidden="true">
+                <path d={h.icono} fill="currentColor" />
+              </svg>
+            </span>
+            <span>
+              <span class="block text-lg leading-tight font-bold">{h.nombre}</span>
+              <span class="block text-sm text-navy/70">{h.uso}</span>
+            </span>
+          </div>
+        </li>
+      ))
+    }
+  </ul>
+</div>
