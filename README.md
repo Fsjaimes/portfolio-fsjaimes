@@ -20,7 +20,7 @@ Es un sitio estático de una sola página con animaciones 3D en Three.js, pensad
 
 - **Hero**: avatar, nombre y stack principal sobre formas con efecto *liquid morph*.
 - **About me**: perfil profesional.
-- **Resume**: fortalezas y herramientas (agentes de código, Jira, Git y GitHub).
+- **Resume**: fortalezas y herramientas (agentes de código, Jira, Git, GitHub y Docker).
 - **Proyectos**: galería 3D que se recorre con el scroll.
 - **Formación**: línea de tiempo académica.
 - **Contact me**: correo, LinkedIn y GitHub.
