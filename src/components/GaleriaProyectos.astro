@@ -1,0 +1,58 @@
+---
+import { getCollection } from 'astro:content';
+
+const proyectos = (await getCollection('proyectos', ({ data }) => !data.borrador)).sort(
+  (a, b) => a.data.orden - b.data.orden,
+);
+
+const datos = proyectos.map((p) => ({
+  titulo: p.data.titulo,
+  resumen: p.data.resumen,
+  stack: p.data.stack,
+  portada: p.data.portada,
+}));
+---
+
+<section
+  id="proyectos"
+  data-galeria
+  data-proyectos={JSON.stringify(datos)}
+  style={`--n: ${datos.length}`}
+  class="relative"
+>
+  <div
+    class="escenario sticky top-0 h-svh overflow-hidden"
+    tabindex="0"
+    role="group"
+    aria-label="Galería de proyectos. Usa las flechas arriba y abajo para recorrerla."
+  >
+    <div class="pointer-events-none absolute inset-x-0 top-20 z-10 px-5">
+      <div class="mx-auto max-w-6xl" data-revelar>
+        <h2 class="titulo">
+          <span class="mascara"><span class="sube">Proyectos</span></span>
+        </h2>
+      </div>
+    </div>
+
+    <canvas class="absolute inset-0 h-full w-full" aria-hidden="true"></canvas>
+
+    <p class="pista pointer-events-none absolute inset-x-0 bottom-6 z-10 text-center text-sm text-cloud/70">
+      Desliza o arrastra para explorar
+    </p>
+
+    <ol class="lista-proyectos mx-auto max-w-6xl space-y-4 px-5 pt-64 pb-24">
+      {
+        proyectos.map((p) => (
+          <li class="border-b border-cloud/20 pb-4">
+            <p class="text-2xl font-bold">{p.data.titulo}</p>
+            <p class="mt-1 text-cloud/75">{p.data.resumen}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<script>
+  import '../scripts/galeria';
+</script>
